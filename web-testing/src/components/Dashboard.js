@@ -5,27 +5,42 @@ function Dashboard(props) {
 
 
     const strikeCounter = () => {
-        props.setStrike(props.strike + 1)
+        if (props.strike < 3) {
+            props.setStrike(props.strike + 1)
+        } else {
+            props.setStrike(0) || props.setBall(0)
+        }
     }
 
     const ballCounter = () => {
-
-        props.setBall(props.ball + 1)
+        if (props.ball < 4) {
+            props.setBall(props.ball + 1)
+        } else {
+            props.setBall(0) || props.setStrike(0)
+        }
     }
 
     const foulCounter = () => {
-        props.setFoul(props.foul + 1)
+        if (props.strike < 2) {
+            props.setStrike(props.strike + 1)
+        }
+    }
+
+    const hit = () => {
+        props.setStrike(0) || props.setBall(0)
     }
 
     return (
         <div>
-            Dashboard
 
-            <button onClick={() => strikeCounter()}> Strike</button>
+
+            <button onClick={() => strikeCounter()}>Strike</button>
 
             <button onClick={() => ballCounter()}>Ball</button>
 
             <button onClick={() => foulCounter()}>Foul</button>
+
+            <button onClick={() => hit()}>Hit</button>
 
         </div>
 
